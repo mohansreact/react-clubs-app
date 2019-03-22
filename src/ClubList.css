@@ -1,0 +1,11 @@
+.club-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 580px) {
+  .club-list {
+    display: block;
+  }
+}
