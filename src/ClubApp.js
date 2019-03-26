@@ -45,8 +45,9 @@ class ClubApp extends Component {
       const newClub = {...club, id: this.state.nextClubId};
       return {
         nextClubId: prevState.nextClubId + 1,
-        clubs: [...this.state.clubs, newClub]
-      }
+        clubs: [...this.state.clubs, newClub],
+        showForm: false
+      };
     });
   }
   
@@ -55,7 +56,11 @@ class ClubApp extends Component {
     return (
       <div className="App">
       <Navbar onNewClub= {() => this.setState({showForm: true})}/>
-      { showForm ? <ClubInput onSave={this.handleSave} /> : null }
+      { showForm ? 
+      <ClubInput 
+        onSave={this.handleSave}
+        onClose={() => this.setState({showForm: false})}
+        /> : null }
 
         <ClubList clubs={this.state.clubs}/>
       </div>
