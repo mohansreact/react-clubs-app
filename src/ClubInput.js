@@ -12,13 +12,14 @@ class ClubInput extends Component {
         super(props);
         this.state = {
             title: '',
-            about: "",
+            about: '',
             keyplayers: [''],
             img: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleNewPlayer = this.handleNewPlayer.bind(this);
         this.handleChangePlayer = this.handleChangePlayer.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     
     handleChange(e) {
@@ -36,6 +37,17 @@ class ClubInput extends Component {
                 i === index ? e.target.value : player
             ));
             this.setState({keyplayers});
+    }
+    
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.onSave({...this.state});
+        this.setState({
+            title: '',
+            about: '',
+            keyplayers: [''],
+            img: ''
+        });  
     }
     
     render() {
@@ -91,8 +103,8 @@ class ClubInput extends Component {
           <textarea
                 key='about'
                 id='club-about-input'
-                type='About'
-                name='About'
+                type='about'
+                name='about'
                 rows='8'
                 cols='50'
                 autoComplete='off'
