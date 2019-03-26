@@ -9,9 +9,11 @@ class Club extends Component {
     keyplayers: PropTypes.arrayOf(PropTypes.string).isRequired,
     about: PropTypes.string.isRequired,
     img: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    onDelete: PropTypes.func.isRequired
   }
     render() {
-        const {title, img, about} = this.props;
+        const {title, img, about, id, onDelete} = this.props;
         const keyplayers = this.props.keyplayers.map((player, index) => (
             <li key={index}>{player}</li>
             ));
@@ -28,6 +30,7 @@ class Club extends Component {
           </ul>
           <h4>About:</h4>
           <p>{about}</p>
+          <button type="button" onClick={() => onDelete(id)}>Delete</button>
         </div>
         
       </div>

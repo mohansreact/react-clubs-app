@@ -37,6 +37,7 @@ class ClubApp extends Component {
         showForm: false
     };
     this.handleSave = this.handleSave.bind(this);
+    this.onDelete = this.onDelete.bind(this);
   }
   
   
@@ -51,6 +52,12 @@ class ClubApp extends Component {
     });
   }
   
+  onDelete(id) {
+    const clubs = this.state.clubs.filter(c => c.id !== id);
+    this.setState({clubs});
+  }
+  
+  
   render() {
     const {showForm} = this.state;
     return (
@@ -62,7 +69,7 @@ class ClubApp extends Component {
         onClose={() => this.setState({showForm: false})}
         /> : null }
 
-        <ClubList clubs={this.state.clubs}/>
+        <ClubList onDelete={this.onDelete} clubs={this.state.clubs}/>
       </div>
     );
   }
