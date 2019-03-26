@@ -34,6 +34,7 @@ class ClubApp extends Component {
               }
         ],
         nextClubId: 3,
+        showForm: false
     };
     this.handleSave = this.handleSave.bind(this);
   }
@@ -50,10 +51,12 @@ class ClubApp extends Component {
   }
   
   render() {
+    const {showForm} = this.state;
     return (
       <div className="App">
-      <Navbar />
-      <ClubInput  onSave={this.handleSave}/>
+      <Navbar onNewClub= {() => this.setState({showForm: true})}/>
+      { showForm ? <ClubInput onSave={this.handleSave} /> : null }
+
         <ClubList clubs={this.state.clubs}/>
       </div>
     );
